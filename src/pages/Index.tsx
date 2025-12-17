@@ -4,16 +4,12 @@ import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import FloatingElements from "@/components/FloatingElements";
 
 const Index = () => {
   return (
-    <div className="min-h-screen relative">
-      {/* Floating decorative elements */}
-      <FloatingElements />
-      
+    <div className="min-h-screen">
       <Header />
-      <main className="relative z-10">
+      <main>
         <Hero />
         <About />
         <Projects />

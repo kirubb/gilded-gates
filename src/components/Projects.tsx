@@ -15,36 +15,16 @@ const Projects = () => {
   });
 
   return (
-    <section id="projects" className="relative py-24 bg-muted overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-30">
-        <div 
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--gold) / 0.15) 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
-          }}
-        />
-      </div>
-
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-gold/5 blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-gold/5 blur-3xl" />
-
-      <div className="container mx-auto px-4 relative">
+    <section id="projects" className="py-24 bg-muted">
+      <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          {/* Decorative top element */}
           <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="w-8 h-px bg-gold" />
-            <div className="w-2 h-2 rotate-45 bg-gold" />
             <div className="w-12 h-px bg-gold" />
             <span className="text-gold text-sm tracking-[0.2em] uppercase font-medium">
               Our Portfolio
             </span>
             <div className="w-12 h-px bg-gold" />
-            <div className="w-2 h-2 rotate-45 bg-gold" />
-            <div className="w-8 h-px bg-gold" />
           </div>
 
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-6">
@@ -57,7 +37,7 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Filter Tabs with enhanced styling */}
+        {/* Filter Tabs */}
         <div className="flex justify-center gap-2 mb-12">
           {[
             { value: "all", label: "All Projects" },
@@ -67,33 +47,25 @@ const Projects = () => {
             <button
               key={tab.value}
               onClick={() => setFilter(tab.value as typeof filter)}
-              className={`relative px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 overflow-hidden ${
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 filter === tab.value
-                  ? "bg-gradient-to-r from-gold to-gold-dark text-secondary shadow-lg"
-                  : "bg-background text-muted-foreground hover:text-gold border border-border hover:border-gold/50"
+                  ? "bg-gold text-secondary"
+                  : "bg-background text-muted-foreground hover:text-gold border border-border"
               }`}
             >
-              {filter === tab.value && (
-                <div className="absolute inset-0 bg-gradient-to-r from-gold-light via-gold to-gold-light animate-shimmer opacity-30" />
-              )}
-              <span className="relative z-10">{tab.label}</span>
+              {tab.label}
             </button>
           ))}
         </div>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
-            <div 
+          {filteredProjects.map((project) => (
+            <ProjectCard
               key={project.name}
-              className="animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <ProjectCard
-                project={project}
-                onViewDetails={setSelectedProject}
-              />
-            </div>
+              project={project}
+              onViewDetails={setSelectedProject}
+            />
           ))}
         </div>
 
@@ -105,9 +77,6 @@ const Projects = () => {
           />
         )}
       </div>
-
-      {/* Bottom transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-secondary to-transparent" />
     </section>
   );
 };
